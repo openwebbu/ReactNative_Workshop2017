@@ -1,53 +1,43 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- * @flow
- */
-
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View
-} from 'react-native';
+import { AppRegistry, StyleSheet, Text, View, Navigator } from 'react-native';
+import WelcomePage from './Code/WelcomePage.js'
+import QuestionPages from './Code/QuestionPages.js'
+import ResultPage from './Code/ResultPage'
 
 export default class ReactNativeWorkshop2017 extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      questions: [],
+    };
+  }
+
   render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, edit index.android.js
-        </Text>
-        <Text style={styles.instructions}>
-          Double tap R on your keyboard to reload,{'\n'}
-          Shake or press menu button for dev menu
-        </Text>
-      </View>
-    );
+      //Navigator of the app - Calling WelcomeView by default
+      <Navigator
+        style={{ flex: 1 }}
+        initialRoute={{ name: 'WelcomePage' }}
+        renderScene={this.renderScene}
+      />
+    )
+  }
+
+  //Function designing what to render in the navigator depending on the route.name value
+  renderScene(route, navigator) {
+    if (route.name == 'WelcomePage') {
+      return <WelcomePage navigator={navigator} />
+    }
+    if (route.name == 'QuestionPages') {
+      return <QuestionPages navigator={navigator}/>
+    }
+    if (route.name == 'ResultPage') {
+      return <ResultPage navigator={navigator} {...route.passProps}/>
+    }
   }
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
+
 
 AppRegistry.registerComponent('ReactNativeWorkshop2017', () => ReactNativeWorkshop2017);

@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
 import { AppRegistry, StyleSheet, Text, View, Navigator, Image, Button } from 'react-native';
 
-const questions = ['Did the San Francisco Giants win the World Series in 2012?', 'Bingo', '', '']
-const images = ['https://i.imgur.com/7PskoNq.png', '', '', '']
+const questions = ['Is Citgo a fuel company?', 'Did the Boston red Sox win the World Series in 2013?', 'Is this building a BU building?', 'Is this hockey team better than the BU one?']
+const images = ['https://i.imgur.com/25qj1yx.jpg', 'https://i.imgur.com/JSKxx4R.jpg', 'https://i.imgur.com/xOdIv99.jpg', 'https://i.imgur.com/4quhAH6.png']
+const correctAnswers = ['Yes', 'Yes', 'Yes', 'No']
 var answers = ['', '', '', '']
 
 class QuestionPages extends Component {
@@ -24,17 +25,30 @@ class QuestionPages extends Component {
    *      * We create a const variable questions at the beginning of the file (outside of the class), being an array of length 4
    *      * We fill this variable with 4 questions 
    *      * We do the same thing with const image
+   *      * We do the same thing with const correctAnswers
    *      * We create a var variable answers, that will store the user's answers
    *      * We explain the difference between const and var
-   *      * 
-   *      
+   *    
+   *  - Creating the yesButton and noButton functions
+   *      * Look at the function for more details
+   *      * EXPLANATION FOR THE AUX VARIABLE: 
+   *            Why creating an aux variable when we could simply use this.state.counter??
+   *            The reason is that when we use the this.setState({....}) function, this function will be treated in a secondary thread, which means that if we used:
+   *              if (this.state.counter > 3){
+   *              }
+   *            The this.state.counter would be equal to the value of this.state.counter just as we didn't increment it, 
+   *            as the this.setState({....}) would not have had the time to increase the value of this.state.counter.
+   *            
+   *            This is why we create a aux variable and increment in the main thread, in order to have a correct result when running:
+   *              if (aux > 3){
+   *              }
    */
 
   //First step 
   constructor(props) {
     super(props);
     this.state = {
-      counter: 0
+      counter: 0,
     };
   }
 
@@ -44,35 +58,73 @@ class QuestionPages extends Component {
         <View style={styles.questionFlex}>
           <Text style={styles.questionText}>
             {questions[this.state.counter]}
-          </Text>  
+          </Text>
           <Image
-          style={{width: 300, height: 300, borderWidth:1, borderColor:'green'}}
-          resizeMode='contain'
-          source={{uri: images[this.state.counter]}}
+            style={{ width: 300, height: 300 }}
+            resizeMode='contain'
+            source={{ uri: images[this.state.counter] }}
           />
         </View>
         <View style={styles.buttonsFlex}>
-          <Button 
-            title="Yes!" 
+          <Button
+            title="Yes!"
             color="green"
-            onPress={() => this._navigateToQuestions()}
+            onPress={() => this.yesButton()}
           />
-          <Button 
-            title="No" 
+          <Button
+            title="No"
             color="red"
-            onPress={() => this._navigateToQuestions()}
+            onPress={() => this.noButton()}
           />
-        </View>    
+        </View>
       </View>
     )
   }
 
-  //Function navigating to the QuestionPages view
+  //Function called when pressing the yes button
+  yesButton() {
+    //Putting the answer in an array
+    answers[this.state.counter] = 'Yes'
+    //Copying the value of counter and incrementing it
+    var aux = this.state.counter
+    aux++
+    //Incrementing the counter 
+    this.setState({
+      counter: this.state.counter + 1
+    })
+    //Checking if we have to display the next question or go to the ResultPage
+    if (aux > 3) {
+      this._navigateToResult()
+    }
+  }
+
+  //Function called when pressing the no button
+  noButton() {
+    //Putting the answer in an array
+    answers[this.state.counter] = 'No'
+    //Copying the value of counter and incrementing it
+    var aux = this.state.counter
+    aux++
+    //Incrementing the counter
+    this.setState({
+      counter: this.state.counter + 1
+    })
+    //Checking if we have to display the next question or go to the ResultPage
+    if (aux > 3) {
+      this._navigateToResult()
+    }
+  }
+
+  //Function navigating to the ResultPage view
   _navigateToResult() {
     this.props.navigator.push({
       name: 'ResultPage',
+      passProps: {
+        answers: answers,
+        correctAnswers: correctAnswers
+      }
     })
-  };
+  }
 
 }
 
