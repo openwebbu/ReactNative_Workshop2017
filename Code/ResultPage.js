@@ -28,7 +28,7 @@ class ResultPage extends Component {
         </View>
         <View style={styles.answerContainer}>
           <Text style={styles.answerText}>
-            {'Well done!! \n You got ' + this.answerAlgorithm() + ' right answers out of ' + this.props.answers.length + ' questions!'}
+            {'Well done! \n You got ' + this.answerAlgorithm() + ' right answers out of ' + this.props.answers.length + ' questions!'}
           </Text>
         </View>
       </View>

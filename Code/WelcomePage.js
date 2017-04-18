@@ -26,7 +26,7 @@ class WelcomePage extends Component {
       <View style={styles.containerFlex}>
         <View style={styles.welcomeFlex}>
           <Text style={styles.welcomeText}>
-            {"Welcome to the OpenWeb workshop quizz!"}
+            {"Welcome to the OpenWeb workshop quiz!"}
           </Text>  
           <Image
           style={{width: 300, height: 300}}
@@ -35,7 +35,7 @@ class WelcomePage extends Component {
         </View>
         <View style={styles.buttonFlex}>
           <Button 
-            title="Go to the quizz!" 
+            title="Go to the quiz!" 
             onPress={() => this._navigateToQuestions()}
           />
         </View>    
