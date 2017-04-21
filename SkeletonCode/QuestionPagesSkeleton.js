@@ -11,6 +11,22 @@ class QuestionPages extends Component {
 
   render() {
     return (
+      <View style={styles.containerFlex}>
+        <View style={styles.questionFlex}>
+          <Text style={styles.questionText}>
+            {"Questions will be displayed here"}
+          </Text>
+          <Image
+            style={{ width: 300, height: 300 }}
+            resizeMode='contain'
+            source={{ uri: 'https://image.freepik.com/free-icon/question-mark_318-52837.jpg' }}
+          />
+        </View>
+        <View style={styles.buttonsFlex}>
+         
+        </View>
+
+      </View>
      
     )
   }
@@ -33,11 +49,8 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "green"
   },
-  buttonsFlex: {
+   buttonsFlex: {
     flex: 2,
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
     borderWidth: 2,
     borderColor: "blue"
   },

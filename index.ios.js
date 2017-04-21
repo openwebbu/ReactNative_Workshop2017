@@ -3,6 +3,7 @@ import { AppRegistry, StyleSheet, Text, View, Navigator } from 'react-native';
 import WelcomePage from './Code/WelcomePage.js'
 import QuestionPages from './Code/QuestionPages.js'
 import ResultPage from './Code/ResultPage'
+import QuestionPagesSkeleton from './SkeletonCode/QuestionPagesSkeleton.js'
 
 export default class ReactNativeWorkshop2017 extends Component {
 
