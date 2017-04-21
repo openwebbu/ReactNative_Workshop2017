@@ -81,43 +81,9 @@ class QuestionPages extends Component {
     )
   }
 
-  //Function called when pressing the yes button
-  yesButton() {
+  answerFunc(userAnswer){
     //Putting the answer in an array
-    answers[this.state.counter] = 'Yes'
-    //Copying the value of counter and incrementing it
-    var aux = this.state.counter
-    aux++
-    //Incrementing the counter 
-    this.setState({
-      counter: this.state.counter + 1
-    })
-    //Checking if we have to display the next question or go to the ResultPage
-    if (aux > 3) {
-      this._navigateToResult()
-    }
-  }
-
-  //Function called when pressing the no button
-  noButton() {
-    //Putting the answer in an array
-    answers[this.state.counter] = 'No'
-    //Copying the value of counter and incrementing it
-    var aux = this.state.counter
-    aux++
-    //Incrementing the counter
-    this.setState({
-      counter: this.state.counter + 1
-    })
-    //Checking if we have to display the next question or go to the ResultPage
-    if (aux > 3) {
-      this._navigateToResult()
-    }
-  }
-
-  answerFunc(answer){
-    //Putting the answer in an array
-    answers[this.state.counter] = answer
+    answers[this.state.counter] = userAnswer
     //Copying the value of counter and incrementing it
     var aux = this.state.counter
     aux++
