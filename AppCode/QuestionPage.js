@@ -25,9 +25,7 @@ class QuestionPages extends Component {
         <View style={styles.buttonsFlex}>
          
         </View>
-
       </View>
-     
     )
   }
 

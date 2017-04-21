@@ -7,10 +7,9 @@ class ResultPage extends Component {
 
   render() {
     return (
-     
+      <View/>
     )
   }
-
 
 }
 
