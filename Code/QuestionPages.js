@@ -40,7 +40,7 @@ class QuestionPages extends Component {
    *            as the this.setState({....}) would not have had the time to increase the value of this.state.counter.
    *            
    *            This is why we create a aux variable and increment in the main thread, in order to have a correct result when running:
-   *              if (aux > 3){
+   *              if (aux > 3){ 
    *              }
    */
 
@@ -69,12 +69,12 @@ class QuestionPages extends Component {
           <Button
             title="Yes!"
             color="green"
-            onPress={() => this.yesButton()}
+            onPress={() => this.answerFunc('Yes')}
           />
           <Button
             title="No"
             color="red"
-            onPress={() => this.noButton()}
+            onPress={() => this.answerFunc('No')}
           />
         </View>
       </View>
@@ -102,6 +102,22 @@ class QuestionPages extends Component {
   noButton() {
     //Putting the answer in an array
     answers[this.state.counter] = 'No'
+    //Copying the value of counter and incrementing it
+    var aux = this.state.counter
+    aux++
+    //Incrementing the counter
+    this.setState({
+      counter: this.state.counter + 1
+    })
+    //Checking if we have to display the next question or go to the ResultPage
+    if (aux > 3) {
+      this._navigateToResult()
+    }
+  }
+
+  answerFunc(answer){
+    //Putting the answer in an array
+    answers[this.state.counter] = answer
     //Copying the value of counter and incrementing it
     var aux = this.state.counter
     aux++

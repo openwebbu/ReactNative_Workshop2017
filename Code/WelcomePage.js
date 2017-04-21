@@ -62,7 +62,6 @@ const styles = StyleSheet.create({
   },
   welcomeFlex: {
     flex: 8,
-    flexDirection: "column",
     alignItems: 'center',
     justifyContent: 'center',
     borderWidth: 2,
@@ -75,10 +74,7 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "blue"
   },
-  welcomeText: {
-    textAlign: 'center',
-    fontSize: 25
-  }
+
 });
 
 export default WelcomePage

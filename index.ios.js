@@ -6,13 +6,6 @@ import ResultPage from './Code/ResultPage'
 
 export default class ReactNativeWorkshop2017 extends Component {
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      questions: [],
-    };
-  }
-
   render() {
     return (
       //Navigator of the app - Calling WelcomeView by default
